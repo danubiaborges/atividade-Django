@@ -5,6 +5,7 @@ from django.shortcuts import render #biblioteca do django para enviar respostas 
 from django.shortcuts import redirect #biblioteca do django para redirecionar de uma interface web (página web) para outra - cria a navegação entre páginas web
 from django.http import HttpResponse
 from django.utils import timezone
+from ItaCar_app.models import avaliacao
 
 #importações dos modelos (classes) necessários para o UC Abrir Conta
 #from ItaCar_app.models import contaComum, PessoaFisica
@@ -24,5 +25,12 @@ def avaliarPassageiro(request):
         nomePass = request.POST.get('nomePass')
         nota = request.POST.get('nota')
         comentario = request.POST.get('comentario')
+
+        if idCorrida and nomePass and nota and comentario:
+            avaliacao_obj = avaliacao(idCorrida = idCorrida, nomePass = nomePass, nota = nota, comentario = comentario)
+            avaliacao_obj.save()
+            return render(request, "ItaCar/avaliarPassageiro.html")
+        else:
+            return HttpResponse("Por favor, preencha todos os campos obrigatórios.")
     
     return render(request, "ItaCar/avaliarPassageiro.html")

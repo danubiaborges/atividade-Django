@@ -59,27 +59,21 @@ Interface de Avaliar Passageiro
     }
   </style>
 
-  <script>
-    function armazenarNota(nota) {
-      var estrelas = document.querySelectorAll('.star-icon');
-      estrelas.forEach(function(estrela) {
-        estrela.classList.remove('ativo');
-      });
+<input type="hidden" id="notaSelecionada" name="nota" value="">
 
-      var estrelaClicada = document.getElementById('estrela-' + nota);
-      estrelaClicada.classList.add('ativo');
+<script>
+  function armazenarNota(nota) {
+    var estrelas = document.querySelectorAll('.star-icon');
+    estrelas.forEach(function(estrela) {
+      estrela.classList.remove('ativo');
+    });
 
-      document.getElementById('notaSelecionada').value = nota;
-    }
+    var estrelaClicada = document.getElementById('estrela-' + nota);
+    estrelaClicada.classList.add('ativo');
 
-    function enviarNota() {
-      var nota = document.getElementById('notaSelecionada').value;
-      
-      console.log("Nota enviada: " + nota);
-
-      document.getElementById('mensagem').textContent = "Obrigado!";
-    }
-  </script>
+    document.getElementById('notaSelecionada').value = nota;
+  }
+</script>
 
 <body>
   <ul class="avaliacao">
@@ -90,8 +84,6 @@ Interface de Avaliar Passageiro
     <li class="star-icon" id="estrela-5" onclick="armazenarNota(5)"></li>
   </ul>
 </body>
-
-  <input type="hidden" id="notaSelecionada" value="">
 
   <label for="comentario">Comentário:</label>
   <input type="text" id="comentario" name="comentario"><br> 
